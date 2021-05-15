@@ -17,16 +17,22 @@ class Result
 
     public function subscription() 
     {
-        $subscription = $this->_get('subscription', Models\Subscription::class, 
-        array(
-            'addons' => Models\SubscriptionAddon::class,
-            'event_based_addons' => Models\SubscriptionEventBasedAddon::class,
-            'charged_event_based_addons' => Models\SubscriptionChargedEventBasedAddon::class,
-            'coupons' => Models\SubscriptionCoupon::class,
-            'shipping_address' => Models\SubscriptionShippingAddress::class,
-            'referral_info' => Models\SubscriptionReferralInfo::class,
-            'contract_term' => Models\SubscriptionContractTerm::class
-        ));
+        $subscription = $this->_get(
+            'subscription', Models\Subscription::class, 
+            array(
+                'subscription_items' => Models\SubscriptionSubscriptionItem::class,
+                'item_tiers' => Models\SubscriptionItemTier::class,
+                'charged_items' => Models\SubscriptionChargedItem::class,
+                'addons' => Models\SubscriptionAddon::class,
+                'event_based_addons' => Models\SubscriptionEventBasedAddon::class,
+                'charged_event_based_addons' => Models\SubscriptionChargedEventBasedAddon::class,
+                'coupons' => Models\SubscriptionCoupon::class,
+                'shipping_address' => Models\SubscriptionShippingAddress::class,
+                'referral_info' => Models\SubscriptionReferralInfo::class,
+                'contract_term' => Models\SubscriptionContractTerm::class,
+            )
+        );
+
         return $subscription;
     }
 
@@ -34,6 +40,19 @@ class Result
     {
         $contract_term = $this->_get('contract_term', Models\ContractTerm::class);
         return $contract_term;
+    }
+
+    function advanceInvoiceSchedule()
+    {
+        $advance_invoice_schedule = $this->_get(
+            'advance_invoice_schedule', Models\AdvanceInvoiceSchedule::class, 
+            array(
+                'fixed_interval_schedule' => Models\AdvanceInvoiceScheduleFixedIntervalSchedule::class,
+                'specific_dates_schedule' => Models\AdvanceInvoiceScheduleSpecificDatesSchedule::class
+            )
+        );
+
+        return $advance_invoice_schedule;
     }
 
     public function customer() 
@@ -175,6 +194,22 @@ class Result
         return $quote;
     }
 
+    function quotedSubscription() 
+    {
+        $quoted_subscription = $this->_get(
+            'quoted_subscription', Models\QuotedSubscription::class, 
+            array(
+                'addons' => Models\QuotedSubscriptionAddon::class,
+                'event_based_addons' => Models\QuotedSubscriptionEventBasedAddon::class,
+                'coupons' => Models\QuotedSubscriptionCoupon::class,
+                'subscription_items' => Models\QuotedSubscriptionSubscriptionItem::class,
+                'item_tiers' => Models\QuotedSubscriptionItemTier::class
+            )
+        );
+
+        return $quoted_subscription;
+    }
+
     public function quoteLineGroup() 
     {
         $quote_line_group = $this->_get('quote_line_group', Models\QuoteLineGroup::class, 
@@ -198,7 +233,14 @@ class Result
 
     public function coupon() 
     {
-        $coupon = $this->_get('coupon', Models\Coupon::class);
+        $coupon = $this->_get(
+            'coupon', Models\Coupon::class, 
+            array(
+                'item_constraints' => Models\CouponItemConstraint::class,
+                'item_constraint_criteria' => Models\CouponItemConstraintCriteria::class
+            )
+        );
+
         return $coupon;
     }
 
@@ -218,6 +260,12 @@ class Result
     {
         $address = $this->_get('address', Models\Address::class);
         return $address;
+    }
+
+    function usage() 
+    {
+        $usage = $this->_get('usage', Models\Usage::class);
+        return $usage;
     }
 
     public function event() 
@@ -278,6 +326,39 @@ class Result
         return $payment_intent;
     }
 
+    function itemFamily()
+    {
+        $item_family = $this->_get('item_family', Models\ItemFamily::class);
+        return $item_family;
+    }
+
+    function item() 
+    {
+        $item = $this->_get('item', Models\Item::class, 
+        array('applicable_items' => Models\ItemApplicableItem::class));
+        return $item;
+    }
+
+    function itemPrice() 
+    {
+        $item_price = $this->_get('item_price', Models\ItemPrice::class, 
+        array('tiers' => Models\ItemPriceTier::class, 'tax_detail' => Models\ItemPriceTaxDetail::class, 'accounting_detail' => Models\ItemPriceAccountingDetail::class));
+        return $item_price;
+    }
+
+    function attachedItem()
+    {
+        $attached_item = $this->_get('attached_item', Models\AttachedItem::class);
+        return $attached_item;
+    }
+
+    function differentialPrice() 
+    {
+        $differential_price = $this->_get('differential_price', Models\DifferentialPrice::class, 
+        array('tiers' => Models\DifferentialPriceTier::class, 'parent_periods' => Models\DifferentialPriceParentPeriod::class));
+        return $differential_price;
+    }
+
 
     public function unbilledCharges()
     {
@@ -293,6 +374,13 @@ class Result
         return $credit_notes;
     }
     
+    function advanceInvoiceSchedules() 
+    {
+        $advance_invoice_schedules = $this->_getList('advance_invoice_schedules', Models\AdvanceInvoiceSchedule::class,
+        array('fixed_interval_schedule' => Models\AdvanceInvoiceScheduleFixedIntervalSchedule::class, 'specific_dates_schedule' => Models\AdvanceInvoiceScheduleSpecificDatesSchedule::class));
+        return $advance_invoice_schedules;
+    }
+    
     public function hierarchies() 
     {
         $hierarchies = $this->_getList('hierarchies', Models\Hierarchy::class,
@@ -306,11 +394,18 @@ class Result
         array('line_items' => Models\InvoiceLineItem::class, 'discounts' => Models\InvoiceDiscount::class, 'line_item_discounts' => Models\InvoiceLineItemDiscount::class, 'taxes' => Models\InvoiceTax::class, 'line_item_taxes' => Models\InvoiceLineItemTax::class, 'line_item_tiers' => Models\InvoiceLineItemTier::class, 'linked_payments' => Models\InvoiceLinkedPayment::class, 'dunning_attempts' => Models\InvoiceDunningAttempt::class, 'applied_credits' => Models\InvoiceAppliedCredit::class, 'adjustment_credit_notes' => Models\InvoiceAdjustmentCreditNote::class, 'issued_credit_notes' => Models\InvoiceIssuedCreditNote::class, 'linked_orders' => Models\InvoiceLinkedOrder::class, 'notes' => Models\InvoiceNote::class, 'shipping_address' => Models\InvoiceShippingAddress::class, 'billing_address' => Models\InvoiceBillingAddress::class));
         return $invoices;
     }
-   
-     public function toJson() {
-           return json_encode($this->_response);
-     } 
     
+    function differentialPrices()
+    {
+        $differential_prices = $this->_getList('differential_prices', Models\DifferentialPrice::class,
+        array('tiers' => Models\DifferentialPriceTier::class, 'parent_periods' => Models\DifferentialPriceParentPeriod::class));
+        return $differential_prices;
+    }
+
+    public function toJson() {
+        return json_encode($this->_response);
+    }
+
     private function _getList($type, $class, $subTypes = array(), $dependantTypes = array(),  $dependantSubTypes = array())
     {
         if(!array_key_exists($type, $this->_response))

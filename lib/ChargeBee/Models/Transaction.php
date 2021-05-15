@@ -9,41 +9,41 @@ use ChargeBee\ChargeBee\Util;
 class Transaction extends Model
 {
     protected $allowed = [
-      'id',
-      'customerId',
-      'subscriptionId',
-      'gatewayAccountId',
-      'paymentSourceId',
-      'paymentMethod',
-      'referenceNumber',
-      'gateway',
-      'type',
-      'date',
-      'settledAt',
-      'currencyCode',
-      'amount',
-      'idAtGateway',
-      'status',
-      'fraudFlag',
-      'authorizationReason',
-      'errorCode',
-      'errorText',
-      'voidedAt',
-      'resourceVersion',
-      'updatedAt',
-      'fraudReason',
-      'amountUnused',
-      'maskedCardNumber',
-      'referenceTransactionId',
-      'refundedTxnId',
-      'referenceAuthorizationId',
-      'amountCapturable',
-      'reversalTransactionId',
-      'linkedInvoices',
-      'linkedCreditNotes',
-      'linkedRefunds',
-      'linkedPayments',
-      'deleted',
+        'id',
+        'customerId',
+        'subscriptionId',
+        'gatewayAccountId',
+        'paymentSourceId',
+        'paymentMethod',
+        'referenceNumber',
+        'gateway',
+        'type',
+        'date',
+        'settledAt',
+        'currencyCode',
+        'amount',
+        'idAtGateway',
+        'status',
+        'fraudFlag',
+        'authorizationReason',
+        'errorCode',
+        'errorText',
+        'voidedAt',
+        'resourceVersion',
+        'updatedAt',
+        'fraudReason',
+        'amountUnused',
+        'maskedCardNumber',
+        'referenceTransactionId',
+        'refundedTxnId',
+        'referenceAuthorizationId',
+        'amountCapturable',
+        'reversalTransactionId',
+        'linkedInvoices',
+        'linkedCreditNotes',
+        'linkedRefunds',
+        'linkedPayments',
+        'deleted',
     ];
 
     # OPERATIONS
@@ -57,6 +57,11 @@ class Transaction extends Model
     public static function voidTransaction($id, $env = null, $headers = [])
     {
         return Request::send(Request::POST, Util::encodeURIPath("transactions", $id, "void"), [], $env, $headers);
+    }
+
+    public static function refund($id, $params = array(), $env = null, $headers = array())
+    {
+      return Request::send(Request::POST, Util::encodeURIPath("transactions",$id,"refund"), $params, $env, $headers);
     }
 
     public static function all($params = [], $env = null, $headers = [])
@@ -83,4 +88,5 @@ class Transaction extends Model
     {
         return Request::send(Request::GET, Util::encodeURIPath("transactions", $id), [], $env, $headers);
     }
+
 }

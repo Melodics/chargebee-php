@@ -5,15 +5,14 @@ use ChargeBee\ChargeBee\Model;
 
 class Hierarchy extends Model
 {
+    protected $allowed = [
+        'customerId',
+        'parentId',
+        'paymentOwnerId',
+        'invoiceOwnerId',
+        'childrenIds',
+    ];
 
-  protected $allowed = [
-      'parentId',
-      'paymentOwnerId',
-      'invoiceOwnerId',
-      'customerId',
-      'childrenIds'
-  ];
-
-  # OPERATIONS
-  #-----------
+    # OPERATIONS
+    #-----------
 }

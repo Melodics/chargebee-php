@@ -28,15 +28,28 @@ class Coupon extends Model
       'createdAt',
       'archivedAt','resourceVersion',
       'updatedAt',
+      'includedInMrr',
       'planIds',
       'addonIds',
+      'itemConstraints',
+      'itemConstraintCriteria',
       'redemptions',
       'invoiceNotes',
-      'metaData',
+      'metaData'
     ];
 
     # OPERATIONS
     #-----------
+    
+    public static function createForItems($params, $env = null, $headers = [])
+    {
+      return Request::send(Request::POST, Util::encodeURIPath("coupons","create_for_items"), $params, $env, $headers);
+    }
+
+    public static function updateForItems($id, $params, $env = null, $headers = [])
+    {
+      return Request::send(Request::POST, Util::encodeURIPath("coupons",$id,"update_for_items"), $params, $env, $headers);
+    }
 
     public static function create($params, $env = null, $headers = [])
     {

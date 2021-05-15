@@ -6,10 +6,13 @@ use ChargeBee\ChargeBee\Model;
 
 class PlanAttachedAddon extends Model
 {
+
     protected $allowed = [
-      'id',
-      'quantity',
-      'billing_cycles',
-      'type',
+        'id',
+        'quantity',
+        'billing_cycles',
+        'type',
+        'quantity_in_decimal',
     ];
+    
 }

@@ -24,6 +24,11 @@ class Gift extends Model
     # OPERATIONS
     #-----------
 
+    public static function createForItems($params, $env = null, $headers = [])
+    {
+      return Request::send(Request::POST, Util::encodeURIPath("gifts","create_for_items"), $params, $env, $headers);
+    }
+
     public static function create($params, $env = null, $headers = [])
     {
         return Request::send(Request::POST, Util::encodeURIPath("gifts"), $params, $env, $headers);

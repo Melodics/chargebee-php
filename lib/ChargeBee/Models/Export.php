@@ -66,33 +66,65 @@ class Export extends Model
         return Request::send(Request::POST, Util::encodeURIPath("exports", "addons"), $params, $env, $headers);
     }
 
-    public static function coupons($params = [], $env = null, $headers = [])
+    public static function coupons($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "coupons"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","coupons"), $params, $env, $headers);
     }
 
-    public static function customers($params = [], $env = null, $headers = [])
+    public static function customers($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "customers"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","customers"), $params, $env, $headers);
     }
 
-    public static function subscriptions($params = [], $env = null, $headers = [])
+    public static function subscriptions($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "subscriptions"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","subscriptions"), $params, $env, $headers);
     }
 
-    public static function invoices($params = [], $env = null, $headers = [])
+    public static function invoices($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "invoices"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","invoices"), $params, $env, $headers);
     }
 
-    public static function creditNotes($params = [], $env = null, $headers = [])
+    public static function creditNotes($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "credit_notes"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","credit_notes"), $params, $env, $headers);
     }
 
-    public static function transactions($params = [], $env = null, $headers = [])
+    public static function transactions($params = array(), $env = null, $headers = array())
     {
-        return Request::send(Request::POST, Util::encodeURIPath("exports", "transactions"), $params, $env, $headers);
+        return Request::send(Request::POST, Util::encodeURIPath("exports","transactions"), $params, $env, $headers);
     }
+
+    public static function orders($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","orders"), $params, $env, $headers);
+    }
+
+    public static function itemFamilies($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","item_families"), $params, $env, $headers);
+    }
+
+    public static function items($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","items"), $params, $env, $headers);
+    }
+
+    public static function itemPrices($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","item_prices"), $params, $env, $headers);
+    }
+
+    public static function attachedItems($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","attached_items"), $params, $env, $headers);
+    }
+
+    public static function differentialPrices($params = array(), $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("exports","differential_prices"), $params, $env, $headers);
+    }
+
 }
+

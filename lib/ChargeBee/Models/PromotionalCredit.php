@@ -9,17 +9,18 @@ use ChargeBee\ChargeBee\Util;
 class PromotionalCredit extends Model
 {
     protected $allowed = [
-      'id',
-      'customerId',
-      'type',
-      'amount',
-      'currencyCode',
-      'description',
-      'creditType',
-      'reference',
-      'closingBalance',
-      'doneBy',
-      'createdAt',
+        'id',
+        'customerId',
+        'type',
+        'amountInDecimal',
+        'amount',
+        'currencyCode',
+        'description',
+        'creditType',
+        'reference',
+        'closingBalance',
+        'doneBy',
+        'createdAt',
     ];
 
     # OPERATIONS

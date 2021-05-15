@@ -35,13 +35,25 @@ class VirtualBankAccount extends Model
         return Request::send(Request::POST, Util::encodeURIPath("virtual_bank_accounts"), $params, $env, $headers);
     }
 
-    public static function retrieve($id, $env = null, $headers = [])
+    public static function retrieve($id, $env = null, $headers = array())
     {
-        return Request::send(Request::GET, Util::encodeURIPath("virtual_bank_accounts", $id), [], $env, $headers);
+        return Request::send(Request::GET, Util::encodeURIPath("virtual_bank_accounts",$id), array(), $env, $headers);
     }
 
-    public static function all($params = [], $env = null, $headers = [])
+    public static function all($params = array(), $env = null, $headers = array())
     {
         return Request::sendListRequest(Request::GET, Util::encodeURIPath("virtual_bank_accounts"), $params, $env, $headers);
     }
+
+    public static function delete($id, $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("virtual_bank_accounts",$id,"delete"), array(), $env, $headers);
+    }
+
+    public static function deleteLocal($id, $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("virtual_bank_accounts",$id,"delete_local"), array(), $env, $headers);
+    }
+
 }
+

@@ -9,22 +9,22 @@ use ChargeBee\ChargeBee\Util;
 class Address extends Model
 {
     protected $allowed = [
-      'label',
-      'firstName',
-      'lastName',
-      'email',
-      'company',
-      'phone',
-      'addr',
-      'extendedAddr',
-      'extendedAddr2',
-      'city',
-      'stateCode',
-      'state',
-      'country',
-      'zip',
-      'validationStatus',
-      'subscriptionId',
+        'label',
+        'firstName',
+        'lastName',
+        'email',
+        'company',
+        'phone',
+        'addr',
+        'extendedAddr',
+        'extendedAddr2',
+        'city',
+        'stateCode',
+        'state',
+        'country',
+        'zip',
+        'validationStatus',
+        'subscriptionId',
     ];
 
     # OPERATIONS

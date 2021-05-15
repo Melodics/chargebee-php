@@ -18,11 +18,16 @@ class CreditNoteEstimateLineItem extends Model
       'is_taxed',
       'tax_amount',
       'tax_rate',
+      'unit_amount_in_decimal',
+      'quantity_in_decimal',
+      'amount_in_decimal',
       'discount_amount',
       'item_level_discount_amount',
       'description',
+      'entity_description',
       'entity_type',
       'tax_exempt_reason',
       'entity_id',
+      'customer_id',
     ];
 }
