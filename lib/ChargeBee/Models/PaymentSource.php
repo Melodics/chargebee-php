@@ -38,6 +38,11 @@ class PaymentSource extends Model
         return Request::send(Request::POST, Util::encodeURIPath("payment_sources", "create_using_permanent_token"), $params, $env, $headers);
     }
 
+    public static function createUsingPaymentIntent($params, $env = null, $headers = array())
+    {
+        return Request::send(Request::POST, Util::encodeURIPath("payment_sources", "create_using_payment_intent"), $params, $env, $headers);
+    }
+
     public static function createCard($params, $env = null, $headers = [])
     {
         return Request::send(Request::POST, Util::encodeURIPath("payment_sources", "create_card"), $params, $env, $headers);
